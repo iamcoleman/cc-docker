@@ -1,8 +1,8 @@
-import sys
-
-from cc_docker_assignment.cc_docker_assignment import fib, get_all_files
+from cc_docker_assignment.cc_docker_assignment import create_result_file, read_result
 
 if __name__ == "__main__":
-    n = int(sys.argv[1])
-    print(fib(n))
-    get_all_files()
+    # make the '/home/output/result.txt' file
+    create_result_file()
+
+    # read and print the contents of 'result.txt'
+    read_result()

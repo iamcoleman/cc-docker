@@ -1,4 +1,3 @@
-#FROM python:3.8-slim AS base
 FROM python:3.8-alpine AS base
 
 # Setup env
@@ -13,7 +12,6 @@ FROM base AS python-deps
 
 # Install pipenv and compilation dependencies
 RUN pip install pipenv
-#RUN apt-get update && apt-get install -y --no-install-recommends gcc
 RUN apk update && apk add gcc
 
 # Install python dependencies in /.venv
@@ -36,4 +34,3 @@ COPY . .
 
 # Run the executable
 ENTRYPOINT ["python", "-m", "cc_docker_assignment"]
-CMD ["6"]
