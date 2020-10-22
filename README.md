@@ -21,3 +21,12 @@ cc-docker-image`
     - Where `<your_file_location>` is the path to a directory on your computer than contains the `.txt` files
 2. This will create and run the Docker container `cc-docker-container`
 3. The contents of the generated `result.txt` file will be displayed in your console
+
+
+### View file structure of the container
+1. Run the command `docker export -o <file_name>.tar cc-docker-container`
+    - where `<file_name>` is any name you choose
+2. This will create a `.tar` file in your current directory. You can open this `.tar` file to see the file structure of the container.
+    - Application files are located in `/home/app`
+    - The directory you specify when running the container is bound to `/home/data`
+    - The `result.txt` file is saved to `/home/output`
