@@ -57,8 +57,10 @@ def create_output_text(files_word_count, ip):
         output_text += "All .txt files found in '" + DATA_DIR + "':\n"
         max_filename = ""
         max_word_count = 0
+        total_number_of_words = 0
         for k, v in files_word_count.items():
-            output_text += "    " + k + "\n"
+            output_text += "    " + k + " - " + str(v) + " words\n"
+            total_number_of_words += v
             if v >= max_word_count:
                 max_filename = k
                 max_word_count = v
@@ -68,6 +70,13 @@ def create_output_text(files_word_count, ip):
             + "' with "
             + str(max_word_count)
             + " words\n"
+        )
+        output_text += (
+            "Total number of words in all "
+            + str(len(files_word_count))
+            + " .txt files: "
+            + str(total_number_of_words)
+            + "\n"
         )
 
     output_text += "\n"
