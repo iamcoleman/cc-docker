@@ -8,6 +8,7 @@ from pathlib import Path
 DATA_DIR = "/home/data"
 
 
+# This function is used for testing in development
 def fib(n: int) -> int:
     if n < 2:
         return n
@@ -15,6 +16,7 @@ def fib(n: int) -> int:
         return fib(n - 1) + fib(n - 2)
 
 
+# gets all '*.txt' files in the DATA_DIR
 def get_all_files():
     files = [
         f
@@ -25,6 +27,7 @@ def get_all_files():
     return files
 
 
+# create a dictionary where keys are filenames and values are the total number of words in each file
 def get_words_per_file():
     files = get_all_files()
 
@@ -41,6 +44,7 @@ def get_words_per_file():
     return files_word_count
 
 
+# get the IP address of the machine the application is running on
 def get_ip_address():
     hostname = socket.gethostname()
     ip = socket.gethostbyname(hostname)
@@ -48,6 +52,7 @@ def get_ip_address():
     return ip
 
 
+# create the string that is used to write the 'result.txt' file
 def create_output_text(files_word_count, ip):
     output_text = "Result.txt File\n\n"
 
@@ -85,6 +90,7 @@ def create_output_text(files_word_count, ip):
     return output_text
 
 
+# create the '/home/output/result.txt' file
 def create_result_file():
     files_word_count = get_words_per_file()
     ip = get_ip_address()
@@ -98,6 +104,7 @@ def create_result_file():
         file.write(output_text)
 
 
+# open the 'result.txt' file and print its contents
 def read_result():
     with open("/home/output/result.txt", "r", encoding="utf-8-sig") as file:
         file_contents = file.read()
