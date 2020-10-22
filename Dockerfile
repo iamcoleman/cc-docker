@@ -1,4 +1,5 @@
-FROM python:3.8-slim AS base
+#FROM python:3.8-slim AS base
+FROM python:3.8-alpine AS base
 
 # Setup env
 ENV LANG C.UTF-8
@@ -7,11 +8,13 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONFAULTHANDLER 1
 
 
+# Utilize multi-stage build to help minimize the size of the image
 FROM base AS python-deps
 
 # Install pipenv and compilation dependencies
 RUN pip install pipenv
-RUN apt-get update && apt-get install -y --no-install-recommends gcc
+#RUN apt-get update && apt-get install -y --no-install-recommends gcc
+RUN apk update && apk add gcc
 
 # Install python dependencies in /.venv
 COPY Pipfile .
@@ -25,14 +28,12 @@ FROM base AS runtime
 COPY --from=python-deps /.venv /.venv
 ENV PATH="/.venv/bin:$PATH"
 
-# Create and switch to a new user
-RUN useradd --create-home appuser
-WORKDIR /home/appuser
-USER appuser
+# Set working directory to /home/app
+WORKDIR /home/app
 
 # Install application into container
-COPY ../cc_docker_assignment .
+COPY . .
 
 # Run the executable
 ENTRYPOINT ["python", "-m", "cc_docker_assignment"]
-CMD ["10"]
+CMD ["6"]
