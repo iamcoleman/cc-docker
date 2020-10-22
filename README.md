@@ -1,1 +1,1 @@
-cc-docker
+# Cloud Computing - Docker Assignment
