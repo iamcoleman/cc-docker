@@ -18,7 +18,7 @@ This small Python application will:
 -v <your_file_location>:/home/data
 --name cc-docker-container
 cc-docker-image` 
-    - Where `<your_file_location>` is the path to a directory on your computer than contains the `.txt` files
+    - Where `<your_file_location>` is the path to a directory on your computer that contains the `.txt` files you want to analyze
 2. This will create and run the Docker container `cc-docker-container`
 3. The contents of the generated `result.txt` file will be displayed in your console
 
@@ -30,3 +30,8 @@ cc-docker-image`
     - Application files are located in `/home/app`
     - The directory you specify when running the container is bound to `/home/data`
     - The `result.txt` file is saved to `/home/output`
+    
+
+### Example Run
+1. I have included some `.txt` files used for testing in the `/hold/text-files` folder.
+2. I have included a `/hold/example_file_structure.tar` file that is a result of running the `docker export` command on the `cc-docker-container` after running the application against the text files that I mentioned above.
